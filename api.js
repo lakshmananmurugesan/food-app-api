@@ -37,7 +37,7 @@ app.get('/api/create-dd-monitor', (req, res) => {
       });
 });
 
-app.get('/api/datadog/webhook', (req, res) => {
+app.post('/api/datadog/webhook', (req, res) => {
   const monitorData = req.body;
   console.log('Received monitor data:', monitorData);
   res.send(`data received - ${monitorData}`);
