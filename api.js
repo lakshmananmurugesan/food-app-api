@@ -4,7 +4,7 @@ const port = process.env.PORT || 3000;
 const axios = require('axios');
 require('dotenv').config();
 
-app.get('/create-dd-monitor', (req, res) => {
+app.get('/api/create-dd-monitor', (req, res) => {
   const apiKey = process.env.DD_API_KEY;
   const appKey = process.env.DD_APP_KEY;
     // Construct the monitor payload
@@ -30,12 +30,11 @@ app.get('/create-dd-monitor', (req, res) => {
     axios
       .post(apiUrl, monitorPayload, { headers })
       .then((response) => {
-        console.log("Monitor created successfully:", response?.data);
+        res.send("Monitor created successfully:", response?.data);
       })
       .catch((error) => {
-        console.error("Error creating monitor:", error?.response?.data);
+        res.send(`Error creating monitor: ${JSON.stringify(error?.response?.data)}`);
       });
-  res.send('Hello, World!');
 });
 
 // Start the server
