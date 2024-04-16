@@ -17,7 +17,7 @@ app.get('/api/create-dd-monitor', (req, res) => {
     };
 
     // Define Datadog API endpoint for creating monitors
-    const apiUrl = "https://api.datadoghq.com/api/v1/monitor";
+    const apiUrl = "https://api.us5.datadoghq.com/api/v1/monitor";
 
     // Define headers for API request
     const headers = {
@@ -30,7 +30,7 @@ app.get('/api/create-dd-monitor', (req, res) => {
     axios
       .post(apiUrl, monitorPayload, { headers })
       .then((response) => {
-        res.send("Monitor created successfully:", response?.data);
+        res.send(`Monitor created successfully: - ${JSON.stringify(response?.data)}`);
       })
       .catch((error) => {
         res.send(`Error creating monitor: ${JSON.stringify(error?.response?.data)}`);
